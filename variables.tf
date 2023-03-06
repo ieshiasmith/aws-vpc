@@ -11,7 +11,7 @@ variable "name" {
 }
 
 variable "cidr_prefix" {
-  default     = 10.0
+  default     = "10.0"
   description = "CDIR PREFIX for the entire VPC"
 }
 
