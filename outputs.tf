@@ -19,7 +19,6 @@ output "private_subnet_ids" {
   value = module.vpc.private_subnets
 }
 
-
 output "cluster1_name" {
   value = local.cluster1_name
 }
@@ -30,4 +29,16 @@ output "cluster2_name" {
 
 output "cluster3_name" {
   value = local.cluster3_name
+}
+
+output "private_subnet_1" {
+  value = module.vpc.aws_subnet.private[0]
+}
+
+output "private_subnet_2" {
+  value = module.vpc.aws_subnet.private[1]
+}
+
+output "private_subnet_3" {
+  value = module.vpc.aws_subnet.private[3]
 }
