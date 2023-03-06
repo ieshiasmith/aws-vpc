@@ -31,14 +31,14 @@ output "cluster3_name" {
   value = local.cluster3_name
 }
 
-output "private_subnet_1" {
-  value = module.vpc.aws_subnet.private[0]
-}
+# output "private_subnet_1" {
+#   value = module.vpc.aws_subnet.private[0]
+# }
 
-output "private_subnet_2" {
-  value = module.vpc.aws_subnet.private[1]
-}
+# output "private_subnet_2" {
+#   value = module.vpc.aws_subnet.private[1]
+# }
 
-output "private_subnet_3" {
-  value = module.vpc.aws_subnet.private[3]
-}
+# output "private_subnet_3" {
+#   value = module.vpc.aws_subnet.private[3]
+# }
