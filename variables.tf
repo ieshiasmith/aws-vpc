@@ -20,7 +20,7 @@ variable "vpc_mask" {
   description = "VPC mask"
 }
 
-variable "cidr_prefix" {
+variable "subnet_mask" {
   default     = "24"
   description = "Subnet mask"
 }
