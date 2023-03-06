@@ -1,3 +1,10 @@
+locals {
+  cluster1_name = "mtc1"
+  cluster2_name = "mtc1"
+  cluster3_name = "mtc1"
+}
+
+
 module "vpc" {
   source = "terraform-aws-modules/vpc/aws"
 
@@ -10,4 +17,34 @@ module "vpc" {
 
   enable_nat_gateway = true
   enable_vpn_gateway = true
+
+  public_subnet_tags = {
+    "kubernetes.io/cluster/${local.cluster1_name}" = "shared"
+    "kubernetes.io/role/elb"                      = 1
+  }
+
+  private_subnet_tags = {
+    "kubernetes.io/cluster/${local.cluster1_name}" = "shared"
+    "kubernetes.io/role/internal-elb"             = 1
+  }
+
+  public_subnet_tags = {
+    "kubernetes.io/cluster/${local.cluster2_name}" = "shared"
+    "kubernetes.io/role/elb"                      = 1
+  }
+
+  private_subnet_tags = {
+    "kubernetes.io/cluster/${local.cluster2_name}" = "shared"
+    "kubernetes.io/role/internal-elb"             = 1
+  }
+  public_subnet_tags = {
+    "kubernetes.io/cluster/${local.cluster3_name}" = "shared"
+    "kubernetes.io/role/elb"                      = 1
+  }
+
+  private_subnet_tags = {
+    "kubernetes.io/cluster/${local.cluster3_name}" = "shared"
+    "kubernetes.io/role/internal-elb"             = 1
+  }
+
 }
