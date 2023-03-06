@@ -18,33 +18,23 @@ module "vpc" {
   enable_nat_gateway = true
   enable_vpn_gateway = true
 
+  # Cluster Tags:
   public_subnet_tags = {
     "kubernetes.io/cluster/${local.cluster1_name}" = "shared"
-    "kubernetes.io/role/elb"                      = 1
+    "kubernetes.io/role/elb"                       = 1
+    "kubernetes.io/cluster/${local.cluster2_name}" = "shared"
+    "kubernetes.io/role/elb"                       = 1
+    "kubernetes.io/cluster/${local.cluster3_name}" = "shared"
+    "kubernetes.io/role/elb"                       = 1
   }
 
   private_subnet_tags = {
     "kubernetes.io/cluster/${local.cluster1_name}" = "shared"
-    "kubernetes.io/role/internal-elb"             = 1
-  }
-
-  public_subnet_tags = {
+    "kubernetes.io/role/internal-elb"              = 1
     "kubernetes.io/cluster/${local.cluster2_name}" = "shared"
-    "kubernetes.io/role/elb"                      = 1
-  }
-
-  private_subnet_tags = {
-    "kubernetes.io/cluster/${local.cluster2_name}" = "shared"
-    "kubernetes.io/role/internal-elb"             = 1
-  }
-  public_subnet_tags = {
+    "kubernetes.io/role/internal-elb"              = 1
     "kubernetes.io/cluster/${local.cluster3_name}" = "shared"
-    "kubernetes.io/role/elb"                      = 1
-  }
-
-  private_subnet_tags = {
-    "kubernetes.io/cluster/${local.cluster3_name}" = "shared"
-    "kubernetes.io/role/internal-elb"             = 1
+    "kubernetes.io/role/internal-elb"              = 1
   }
 
 }
