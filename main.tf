@@ -1,7 +1,7 @@
 locals {
   cluster1_name = "mtc1"
-  cluster2_name = "mtc1"
-  cluster3_name = "mtc1"
+  cluster2_name = "mtc2"
+  cluster3_name = "mtc3"
 }
 
 
