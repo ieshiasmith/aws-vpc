@@ -11,6 +11,16 @@ variable "name" {
 }
 
 variable "cidr_prefix" {
-  default     = 10.27
-  description = "I chose 10.27 because it's a private subnet and because .27 is super random."
+  default     = 10.0
+  description = "CDIR PREFIX for the entire VPC"
+}
+
+variable "vpc_mask" {
+  default     = "16"
+  description = "VPC mask"
+}
+
+variable "cidr_prefix" {
+  default     = "24"
+  description = "Subnet mask"
 }
