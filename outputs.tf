@@ -35,6 +35,10 @@ output "vpc_cidr" {
   value = module.vpc.vpc_cidr_block
 }
 
+output "region" {
+  value = module.vpc.region
+}
+
 # output "private_subnet_1" {
 #   value = module.vpc.aws_subnet.private[0]
 # }
