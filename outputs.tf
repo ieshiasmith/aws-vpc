@@ -36,7 +36,7 @@ output "vpc_cidr" {
 }
 
 output "region" {
-  value = module.vpc.region
+  value = var.region
 }
 
 # output "private_subnet_1" {
