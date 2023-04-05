@@ -30,5 +30,5 @@ variable "management_pubkey" {
 }
 
 variable "my_ip" {
-  description = "64.79.57.24/32"
+  default = "64.79.57.24/32"
 }
