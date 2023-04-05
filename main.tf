@@ -18,7 +18,7 @@ module "vpc" {
 resource "aws_security_group" "ssh" {
   name        = "ssh"
   description = "Allow ssh inbound traffic"
-  vpc_id      = module.vpc.id
+  vpc_id      = module.vpc.vpc_id
 
   ingress {
     description = "TLS from VPC"
