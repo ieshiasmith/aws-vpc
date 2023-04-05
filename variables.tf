@@ -24,3 +24,11 @@ variable "subnet_mask" {
   default     = "24"
   description = "Subnet mask"
 }
+
+variable "management_pubkey" {
+  description = "A public key for the management server"
+}
+
+variable "my_ip" {
+  description = "64.79.57.24/32"
+}
