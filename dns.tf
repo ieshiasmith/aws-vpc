@@ -1,4 +1,5 @@
 # Get the route53 zone
+
 data "aws_route53_zone" "hashidemos" {
   name         = "daniel-fedick.sbx.hashidemos.io"
   private_zone = false
@@ -23,24 +24,40 @@ resource "aws_acm_certificate" "app_certs" {
   }
 }
 
-resource "null_resource" "cert_validation_records" {
-  for_each = {
-    for app in local.apps : 
-      for dvo in aws_acm_certificate.app_certs[app].domain_validation_options : "${app}-${dvo.domain_name}" => {
+/*
+  "flatten" the loop by creating a combined list of maps, 
+  with each map containing both the app name and its respective domain_validation_options value
+*/
+locals {
+  validation_options = flatten([
+    for app in local.apps : [
+      for dvo in aws_acm_certificate.app_certs[app].domain_validation_options : {
+        app    = app
         name   = dvo.resource_record_name
         record = dvo.resource_record_value
         type   = dvo.resource_record_type
       }
-  }
-
-  provisioner "local-exec" {
-    command = "aws route53 change-resource-record-sets --hosted-zone-id ${data.aws_route53_zone.hashidemos.zone_id} --change-batch '{\"Changes\":[{\"Action\":\"UPSERT\",\"ResourceRecordSet\":{\"Name\":\"${each.value.name}\",\"Type\":\"${each.value.type}\",\"TTL\":60,\"ResourceRecords\":[{\"Value\":\"${each.value.record}\"}]}}]}'"
-  }
+    ]
+  ])
 }
 
-resource "aws_acm_certificate_validation" "app_cert" {
-  for_each = toset(local.apps)
-
-  certificate_arn         = aws_acm_certificate.app_certs[each.key].arn
-  validation_record_fqdns = [for record in null_resource.cert_validation_records : record.triggers.name if contains(record.triggers.name, each.key)]
+output "validation_options" {
+  value = local.validation_options
 }
+# Now use the local.validation_options to generate records for each cert validation
+# resource "aws_route53_record" "app_cert_validation" {
+#   for_each = { for vo in local.validation_options : "${vo.app}-${vo.name}" => vo }
+
+#   name    = each.value.name
+#   type    = each.value.type
+#   zone_id = data.aws_route53_zone.hashidemos.zone_id
+#   records = [each.value.record]
+#   ttl     = 60
+# }
+
+# resource "aws_acm_certificate_validation" "app_cert" {
+#   for_each = toset(local.apps)
+  
+#   certificate_arn         = aws_acm_certificate.app_certs[each.key].arn
+#   validation_record_fqdns = [for record in aws_route53_record.app_cert_validation : record.fqdn if contains(record.key, each.key)]
+# }
