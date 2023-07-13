@@ -32,6 +32,7 @@ locals {
         name   = dvo.resource_record_name
         record = dvo.resource_record_value
         type   = dvo.resource_record_type
+        arn    = aws_acm_certificate.app_certs[app].arn
       }
     ]
   ])

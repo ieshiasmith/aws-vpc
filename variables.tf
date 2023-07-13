@@ -32,3 +32,8 @@ variable "management_pubkey" {
 variable "my_ip" {
   default = "x.x.x.x/32"
 }
+
+variable "domain_name" {
+  description = "The Domain name that is being managed"
+  default = "daniel-fedick.sbx.hashidemos.io"
+}
