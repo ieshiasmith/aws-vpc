@@ -41,10 +41,6 @@
 #   ])
 # }
 
-# output "validation_options" {
-#   value = local.validation_options
-# }
-
 # # Now use the local.validation_options to generate records for each cert validation
 # resource "aws_route53_record" "app_cert_validation" {
 #   for_each = { for vo in local.validation_options : "${vo.app}-${replace(vo.name, ".", "-")}" => vo }
