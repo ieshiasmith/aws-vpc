@@ -44,16 +44,17 @@ locals {
 output "validation_options" {
   value = local.validation_options
 }
-# Now use the local.validation_options to generate records for each cert validation
-# resource "aws_route53_record" "app_cert_validation" {
-#   for_each = { for vo in local.validation_options : "${vo.app}-${vo.name}" => vo }
 
-#   name    = each.value.name
-#   type    = each.value.type
-#   zone_id = data.aws_route53_zone.hashidemos.zone_id
-#   records = [each.value.record]
-#   ttl     = 60
-# }
+# Now use the local.validation_options to generate records for each cert validation
+resource "aws_route53_record" "app_cert_validation" {
+  for_each = { for vo in local.validation_options : "${vo.app}-${replace(vo.name, ".", "-")}" => vo }
+
+  name    = each.value.name
+  type    = each.value.type
+  zone_id = data.aws_route53_zone.hashidemos.zone_id
+  records = [each.value.record]
+  ttl     = 60
+}
 
 # resource "aws_acm_certificate_validation" "app_cert" {
 #   for_each = toset(local.apps)
