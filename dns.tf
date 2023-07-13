@@ -24,14 +24,21 @@ resource "aws_acm_certificate" "app_certs" {
   }
 }
 
+locals {
+  validation_options = flatten([
+    for app in local.apps : [
+      for dvo in aws_acm_certificate.app_certs[app].domain_validation_options : {
+        app    = app
+        name   = dvo.resource_record_name
+        record = dvo.resource_record_value
+        type   = dvo.resource_record_type
+      }
+    ]
+  ])
+}
+
 resource "aws_route53_record" "app_cert_validation" {
-  for_each = {
-    for dvo in aws_acm_certificate.app_certs[each.key].domain_validation_options : "${each.key}-${dvo.domain_name}" => {
-      name   = dvo.resource_record_name
-      record = dvo.resource_record_value
-      type   = dvo.resource_record_type
-    }
-  }
+  for_each = { for vo in local.validation_options : "${vo.app}-${vo.name}" => vo }
 
   name    = each.value.name
   type    = each.value.type
@@ -39,6 +46,7 @@ resource "aws_route53_record" "app_cert_validation" {
   records = [each.value.record]
   ttl     = 60
 }
+
 
 resource "aws_acm_certificate_validation" "app_cert" {
   for_each = toset(local.apps)
