@@ -4,10 +4,10 @@ resource "aws_iam_role" "doormat_packer_role" {
     hc-service-uri = "github.com/demoland/packer@main"
   }
   max_session_duration = 43200 # THE GHA will create a session up to 7200
-  assume_role_policy   = data.aws_iam_policy_document.assume_sample.json
+  assume_role_policy   = data.aws_iam_policy_document.assume_dfedick.json
   inline_policy {
     name   = "Packer Repo Role Permissions"
-    policy = data.aws_iam_policy_document.sample.json
+    policy = data.aws_iam_policy_document.assume_dfedick.json
   }
 }
 
@@ -25,7 +25,7 @@ data "aws_iam_policy_document" "assume_dfedick" {
   }
 }
 
-# The following is just for completeness of the sample
+# The following is just for completeness 
 data "aws_iam_policy_document" "describe_resources" {
   statement {
     actions   = ["ec2:DescribeRegions"]
