@@ -1,3 +1,5 @@
+
+#https://docs.prod.secops.hashicorp.services/doormat/gha/#configure-your-github-action-workflow-for-doormat-authorization
 resource "aws_iam_role" "doormat_packer_role" {
   name = "doormat_packer_role"
   tags = {
@@ -6,7 +8,7 @@ resource "aws_iam_role" "doormat_packer_role" {
   max_session_duration = 43200 # THE GHA will create a session up to 7200
   assume_role_policy   = data.aws_iam_policy_document.assume_dfedick.json
   inline_policy {
-    name   = "Packer Repo Role Permissions"
+    name   = "PackerRepoPolicyPermissions"
     policy = data.aws_iam_policy_document.assume_dfedick.json
   }
 }
