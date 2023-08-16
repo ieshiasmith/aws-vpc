@@ -11,7 +11,7 @@ locals {
 
 resource "aws_acm_certificate" "app_certs" {
   for_each = toset(local.apps)
-  
+
   domain_name       = "${each.value}.daniel-fedick.sbx.hashidemos.io"
   validation_method = "DNS"
 
