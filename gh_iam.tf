@@ -1,5 +1,7 @@
 
+# This is the IAM role that will be used by the GHA to run Packer
 #https://docs.prod.secops.hashicorp.services/doormat/gha/#configure-your-github-action-workflow-for-doormat-authorization
+
 resource "aws_iam_role" "doormat_packer_role" {
   name = "doormat_packer_role"
   tags = {
@@ -22,7 +24,7 @@ data "aws_iam_policy_document" "assume_dfedick" {
     ]
     principals {
       type        = "AWS"
-      identifiers = ["arn:aws:iam::548514454989:user/aws_daniel.fedick_test-developer/daniel.fedick@hashicorp.com"]
+      identifiers = ["arn:aws:iam::548514454989:user/aws_daniel.fedick_test"]
     }
   }
 }
