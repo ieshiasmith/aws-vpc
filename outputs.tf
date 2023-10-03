@@ -39,14 +39,14 @@ output "vault_acm_cert" {
   value = aws_security_group.ssh.id
 }
 
-# Output for the IAM role
-output "hashistack_role_arn" {
-  value       = aws_iam_role.hashistack_role.arn
-  description = "The ARN of the hashistack IAM role."
-}
+# # Output for the IAM role
+# output "hashistack_role_arn" {
+#   value       = aws_iam_role.hashistack_role.arn
+#   description = "The ARN of the hashistack IAM role."
+# }
 
-# Optional: Output for the Instance Profile
-output "hashistack_instance_profile_name" {
-  value       = aws_iam_instance_profile.hashistack_instance_profile.name
-  description = "The name of the hashistack instance profile."
-}
+# # Optional: Output for the Instance Profile
+# output "hashistack_instance_profile_name" {
+#   value       = aws_iam_instance_profile.hashistack_instance_profile.name
+#   description = "The name of the hashistack instance profile."
+# }
