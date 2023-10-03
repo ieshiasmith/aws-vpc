@@ -41,7 +41,7 @@ resource "aws_security_group" "ssh" {
   }
 }
 
-resource "aws_key_pair" "management_key" {
-  key_name   = "management"
-  public_key = var.management_pubkey
-}
+# resource "aws_key_pair" "management_key" {
+#   key_name   = "management"
+#   public_key = var.management_pubkey
+# }
