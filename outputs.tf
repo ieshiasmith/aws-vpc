@@ -40,11 +40,11 @@ output "vault_acm_cert" {
 }
 
 output "consul_secrets_manager_arn" {
-  value = aws_secrets_manager.consul.arn
+  value = aws_secretsmanager_secret.consul.arn
 }
 
 output "consul_aws_kms_key_arn" {
-  value = aws_secrets_manager.consul.arn
+  value = aws_kms_key.consul.arn
 }
 
 # # Output for the IAM role
