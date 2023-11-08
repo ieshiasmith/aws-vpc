@@ -39,6 +39,14 @@ output "vault_acm_cert" {
   value = aws_security_group.ssh.id
 }
 
+output "consul_secrets_manager_arn" {
+  value = aws_secrets_manager.consul.arn
+}
+
+output "consul_aws_kms_key_arn" {
+  value = aws_secrets_manager.consul.arn
+}
+
 # # Output for the IAM role
 # output "hashistack_role_arn" {
 #   value       = aws_iam_role.hashistack_role.arn
