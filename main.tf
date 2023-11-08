@@ -15,6 +15,15 @@ module "vpc" {
 
 }
 
+resource "aws_secretsmanager_secret" "consul" {
+  name = "consul"
+}
+
+resource "aws_kms_key" "consul" {
+  description             = "KMS key for Consul"
+  deletion_window_in_days = 10
+}
+
 resource "aws_security_group" "ssh" {
   name        = "ssh"
   description = "Allow ssh inbound traffic"
