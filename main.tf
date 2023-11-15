@@ -15,14 +15,14 @@ module "vpc" {
 
 }
 
-resource "aws_secretsmanager_secret" "consul_key" {
-  name = "consul_key"
-}
+# resource "aws_secretsmanager_secret" "consul_key" {
+#   name = "consul_key"
+# }
 
-resource "aws_kms_key" "consul_key" {
-  description             = "KMS key for Consul Key"
-  deletion_window_in_days = 10
-}
+# resource "aws_kms_key" "consul_key" {
+#   description             = "KMS key for Consul Key"
+#   deletion_window_in_days = 10
+# }
 
 resource "aws_security_group" "ssh" {
   name        = "ssh"
