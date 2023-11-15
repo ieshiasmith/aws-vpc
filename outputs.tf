@@ -43,9 +43,9 @@ output "consul_secrets_manager_arn" {
   value = aws_secretsmanager_secret.consul_servers.arn
 }
 
-# output "consul_aws_kms_key_arn" {
-#   value = aws_kms_key.consul.arn
-# }
+output "consul_aws_kms_key_arn" {
+  value = aws_kms_key.consul_servers.arn
+}
 
 # # Output for the IAM role
 # output "hashistack_role_arn" {
