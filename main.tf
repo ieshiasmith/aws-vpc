@@ -20,7 +20,7 @@ resource "aws_secretsmanager_secret" "consul" {
 }
 
 resource "aws_kms_key" "consul_key" {
-  description             = "KMS key for Consul"
+  description             = "KMS key for Consul Key"
   deletion_window_in_days = 10
 }
 
