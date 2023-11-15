@@ -15,8 +15,8 @@ module "vpc" {
 
 }
 
-resource "aws_secretsmanager_secret" "consul" {
-  name = "consul"
+resource "aws_secretsmanager_secret" "consul_servers" {
+  name = "consul_servers"
 }
 
 # resource "aws_kms_key" "consul_key" {
