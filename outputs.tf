@@ -40,7 +40,7 @@ output "vault_acm_cert" {
 }
 
 output "consul_secrets_manager_arn" {
-  value = aws_secretsmanager_secret.consul.arn
+  value = aws_secretsmanager_secret.consul_key.arn
 }
 
 output "consul_aws_kms_key_arn" {
