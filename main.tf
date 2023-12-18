@@ -1,5 +1,3 @@
-# locals {
-
 module "vpc" {
   source = "terraform-aws-modules/vpc/aws"
 
@@ -15,14 +13,14 @@ module "vpc" {
 
 }
 
-resource "aws_secretsmanager_secret" "consul_servers" {
-  name = "consul_servers"
-}
+#resource "aws_secretsmanager_secret" "consul_servers" {
+#  name = "consul_servers"
+#}
 
-resource "aws_kms_key" "consul_servers" {
-  description             = "KMS key for Consul Server Keys"
-  deletion_window_in_days = 10
-}
+#resource "aws_kms_key" "consul_servers" {
+#  description             = "KMS key for Consul Server Keys"
+#  deletion_window_in_days = 10
+#}
 
 resource "aws_security_group" "ssh" {
   name        = "ssh"
@@ -34,7 +32,7 @@ resource "aws_security_group" "ssh" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["${var.my_ip}", "${var.cidr_prefix}.0.0/${var.vpc_mask}", "0.0.0.0/0"]
+    cidr_blocks = ["${var.my_ip}", "${var.cidr_prefix}.0.0/${var.vpc_mask}"]
   }
 
   egress {
@@ -50,7 +48,7 @@ resource "aws_security_group" "ssh" {
   }
 }
 
-resource "aws_key_pair" "management_key" {
-  key_name   = "management"
-  public_key = var.management_pubkey
-}
+#resource "aws_key_pair" "management_key" {
+#  key_name   = "management"
+#  public_key = var.management_pubkey
+#}

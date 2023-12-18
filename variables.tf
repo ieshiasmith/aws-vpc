@@ -6,7 +6,7 @@ variable "region" {
 
 variable "name" {
   type        = string
-  default     = "demoland"
+  default     = "ieshialand"
   description = "This will be a common named used for labeling most resources"
 }
 
@@ -25,9 +25,10 @@ variable "subnet_mask" {
   description = "Subnet mask"
 }
 
-variable "management_pubkey" {
-  description = "A public key for the management server"
-}
+#variable "management_pubkey" {
+#  description = "A public key for the management server"
+#  default = "abcdef"
+#}
 
 variable "my_ip" {
   default = "x.x.x.x/32"
