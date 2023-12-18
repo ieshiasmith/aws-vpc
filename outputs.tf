@@ -27,25 +27,25 @@ output "region" {
   value = var.region
 }
 
-output "management_key" {
-  value = aws_key_pair.management_key.key_name
-}
+#output "management_key" {
+#  value = aws_key_pair.management_key.key_name
+#}
 
 output "ssh_sg" {
   value = aws_security_group.ssh.id
 }
 
-output "vault_acm_cert" {
-  value = aws_security_group.ssh.id
-}
+#output "vault_acm_cert" {
+#  value = aws_security_group.ssh.id
+#}
 
-output "consul_secrets_manager_arn" {
-  value = aws_secretsmanager_secret.consul_servers.arn
-}
+#output "consul_secrets_manager_arn" {
+#  value = aws_secretsmanager_secret.consul_servers.arn
+#}
 
-output "consul_aws_kms_key_arn" {
-  value = aws_kms_key.consul_servers.arn
-}
+#output "consul_aws_kms_key_arn" {
+#  value = aws_kms_key.consul_servers.arn
+#}
 
 # # Output for the IAM role
 # output "hashistack_role_arn" {
