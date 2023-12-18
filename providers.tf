@@ -2,7 +2,7 @@ terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "~> 5.6.2"
+      version = "~> 5.31.0"
     }
   }
 }
@@ -12,12 +12,12 @@ provider "aws" {
 
   default_tags {
     tags = {
-      Owner       = "Daniel Fedick"
-      Purpose     = "DEMOLAND"
+      Owner       = "Ieshia Smith"
+      Purpose     = "ieshialand"
       Terraform   = true
       Environment = "development"
       DoNotDelete = true
-      Name        = "DEMOLAND VPC"
+      Name        = "IESHIALAND VPC"
     }
   }
 
