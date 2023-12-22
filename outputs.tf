@@ -27,9 +27,9 @@ output "region" {
   value = var.region
 }
 
-#output "management_key" {
-#  value = aws_key_pair.management_key.key_name
-#}
+output "management_key" {
+ value = aws_key_pair.management_key.key_name
+}
 
 output "ssh_sg" {
   value = aws_security_group.ssh.id
